@@ -10,3 +10,4 @@ ktrain==0.39.0
 pytorch-pretrained-bert==0.6.2
 transformers==4.35.2
 tensorflow==2.13.0
+gdown==4.7.1
