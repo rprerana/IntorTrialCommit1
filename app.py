@@ -4,22 +4,22 @@ import plotly.graph_objects as go
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import tensorflow as tf
+import ktrain
+from ktrain import text
 
-df_IMDB_1=pd.read_csv('IMDB_Dataset_50KPolarity_pt1.csv')
-df_IMDB_2=pd.read_csv('IMDB_Dataset_50KPolarity_pt2.csv')
-df_IMDB_new = pd.concat([df_IMDB_1,df_IMDB_2])
+st.subheader(':rainbow[From the above graph we can see that there is a difference in the number of reviews based on the polarity]') 
 
-fig1 = px.histogram(df_IMDB_new, x='subjectivity', color= "sentiment", title="Subjectivity of positive and negative reviews")
-fig1.update_layout(template='plotly_white')
-fig2 = px.histogram(df_IMDB_new, x='polarity', color= "sentiment", title="Polarity of positive and negative reviews")
-fig2.update_layout(template='plotly_white')
+p = ktrain.load_predictor('drive/My Drive/m2bert.keras')
 
-st.title(':blue[Quantitative Question]')
-st.subheader(':red[How does the distribution of sentiment polarity scores vary between positive and negative movie reviews?]')
-st.plotly_chart(fig2)
+st.subheader(':rainbow[ModelLoaded]') 
 
-st.subheader(':rainbow[From the above graph we can see that there is a difference in the number of reviews based on the polarity]')
+test_data =['Barbie 2023 is a tour de force that has left me utterly captivated, enchanted, and spellbound. Every moment of this cinematic marvel was nothing short of pure excellence, deserving nothing less than a perfect 10 out of 10 rating!']
+# sample test data prediction.
+for a in p.predict(test_data):
+  if a=='not_sentiment':
+    st.write('NEGATIVE')
+  else:
+    st.write('POSITIVE')
 
 
-st.title(':blue[Data]')
-st.dataframe(df_IMDB_new)  
