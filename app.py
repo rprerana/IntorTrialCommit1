@@ -10,7 +10,7 @@ from ktrain import text
 
 st.subheader(':rainbow[From the above graph we can see that there is a difference in the number of reviews based on the polarity]') 
 
-p = ktrain.load_predictor('drive/My Drive/m2bert.keras')
+p = ktrain.load_predictor('m2bert.keras')
 
 st.subheader(':rainbow[ModelLoaded]') 
 
